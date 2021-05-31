@@ -1,0 +1,46 @@
+.loginContainer {
+  width: 100vw;
+  height: 100vh;
+
+  color: #555;
+  padding: 4vh 4rem 0rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(45deg, #333054, #0dafd3), url(../../../public/wall.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.loginForm {
+  min-width: 320px;
+  width: 30vw;
+  height: auto;
+  margin-bottom: 3vh;
+  border-radius: 10px;
+
+  background-color: #fff;
+  box-shadow: 4px 10px 100px rgba(0, 0, 0, 0.3);
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10px 10px 0 0px;
+
+    background-color: #212121;
+
+    padding: 3rem;
+  }
+
+  main > form {
+    padding: 2rem 1rem 0rem;
+
+    display: flex;
+    flex-direction: column;
+  }
+}

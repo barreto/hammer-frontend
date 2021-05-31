@@ -1,0 +1,27 @@
+.headerContainer {
+  background: #212121;
+  height: 5rem;
+
+  display: flex;
+  align-items: center;
+
+  padding: 1rem 4rem;
+
+  border-bottom: 1px solid #777;
+
+  h1 {
+    color: #fff;
+    font-size: 24px;
+    font-family: "Cinzel Decorative", cursive;
+  }
+
+  img {
+    height: 48px;
+  }
+
+  span {
+    color: #fff;
+    margin-left: auto;
+    text-transform: capitalize;
+  }
+}
