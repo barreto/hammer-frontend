@@ -5,7 +5,7 @@ import GenericBodyPage from '../../components/GenericBodyPage';
 import { HeaderContext } from '../../contexts/HeaderContext';
 import { LoadingContext } from '../../contexts/LoadingContext';
 
-export default function Home() {
+export default function Containers() {
   const { setHeaderStatus } = useContext(HeaderContext);
   const { setLoadingStatus } = useContext(LoadingContext);
 
@@ -17,10 +17,10 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Hammer | Home</title>
+        <title>Hammer | Containers</title>
       </Head>
       <GenericBodyPage>
-        <h2>Home page</h2>
+        <h2>Containers page</h2>
       </GenericBodyPage>
     </>
   );

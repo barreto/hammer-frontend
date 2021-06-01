@@ -17,6 +17,7 @@ export default function Login() {
 
   useEffect(() => {
     setHeaderStatus(false);
+    setLoadingStatus(false);
   }, []);
 
   useEffect(() => {

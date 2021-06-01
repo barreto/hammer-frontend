@@ -23,8 +23,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     <ThemeProvider theme={theme}>
       <LoadingContextProvider>
         <HeaderContextProvider>
-          <Header />
           <Loading />
+          <Header />
           <Component {...pageProps} />
         </HeaderContextProvider>
       </LoadingContextProvider>
