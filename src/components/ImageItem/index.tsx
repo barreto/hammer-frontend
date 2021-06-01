@@ -9,11 +9,11 @@ import {
   Theme,
   Tooltip,
   Typography,
-} from '@material-ui/core';
-import { Delete, ImageSearch } from '@material-ui/icons';
-import React, { ReactNode, SyntheticEvent, useContext, useEffect, useState } from 'react';
+} from "@material-ui/core";
+import { Delete, ImageSearch } from "@material-ui/icons";
+import React, { ReactNode, SyntheticEvent, useContext, useEffect, useState } from "react";
 
-import Image from '../../models/Image';
+import Image from "../../models/Image";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -90,7 +90,7 @@ export default function ImageItem({ image, deleteImage }: ImageItemsProps) {
               </Typography>
             </Grid>
             <Grid item className={classes.itemOptions}>
-              <Tooltip title="Inspecionar imagem" aria-label="inspecionar imagem" placement="top">
+              {/* <Tooltip title="Inspecionar imagem" aria-label="inspecionar imagem" placement="top">
                 <IconButton
                   color="inherit"
                   aria-haspopup="true"
@@ -100,7 +100,7 @@ export default function ImageItem({ image, deleteImage }: ImageItemsProps) {
                 >
                   <ImageSearch />
                 </IconButton>
-              </Tooltip>
+              </Tooltip> */}
               <Tooltip title="Excluir imagem" aria-label="excluir imagem" placement="top">
                 <IconButton
                   color="inherit"

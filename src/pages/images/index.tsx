@@ -1,6 +1,6 @@
-import { Button, Grid, IconButton, Tooltip } from "@material-ui/core";
+import { Button, Grid, IconButton, Tooltip, Typography } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import { DeleteForever } from "@material-ui/icons";
+import { DeleteForever, NoteAdd } from "@material-ui/icons";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import Router from "next/router";
@@ -23,6 +23,21 @@ const useStyles = makeStyles((theme: Theme) =>
         paddingRight: "1rem",
       },
     },
+    emptyContainer: {
+      maxWidth: "240px",
+      textAlign: "center",
+      height: "70vh",
+      margin: "0vh auto",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    emtpyIcon: {
+      fontSize: "200px",
+      color: "#777",
+    },
+    emtpyLabel: {},
   })
 );
 
@@ -67,8 +82,19 @@ export default function Images({ images }: ImagesProps) {
     console.log(">>> handleOnDeleteAllClick");
   };
 
-  const deteleAllImages = () => {
+  const deteleAllImages = async () => {
     console.log(">>> deteleAllImages");
+    setDialogState(false);
+    setLoadingStatus(true);
+    try {
+      const { data } = await hammerApi.deleteAllImages();
+      console.log(">>> Success: ", data);
+      Router.reload();
+    } catch (error) {
+      console.log(">>> Error: ", error);
+      setLoadingStatus(false);
+    }
+
     handleCloseDialog();
   };
 
@@ -102,6 +128,21 @@ export default function Images({ images }: ImagesProps) {
     handleCloseDialog();
   };
 
+  const handleImageCreate = () => {
+    Router.push("images/pull");
+  };
+
+  const EmptyState = () => {
+    return (
+      <div className={classes.emptyContainer}>
+        <NoteAdd className={classes.emtpyIcon} />
+        <Typography>
+          Ainda não há imagens baixadas na sua conta. Clique em "pull" para resolver isso!
+        </Typography>
+      </div>
+    );
+  };
+
   return (
     <>
       <Head>
@@ -130,14 +171,19 @@ export default function Images({ images }: ImagesProps) {
             </Grid>
           </Grid>
           <Grid item>
-            <Tooltip title="Baixar imagem" aria-label="baixar imagem" placement="right">
-              <Button variant="outlined" color="primary">
+            <Tooltip title="Baixe uma imagem" aria-label="baixe uma imagem" placement="right">
+              <Button variant="outlined" color="primary" onClick={handleImageCreate}>
                 Pull
               </Button>
             </Tooltip>
           </Grid>
         </Grid>
-        <ImagesList images={images} deleteImage={handleOnDeleteSingleClick} />
+
+        {images.length ? (
+          <ImagesList images={images} deleteImage={handleOnDeleteSingleClick} />
+        ) : (
+          <EmptyState />
+        )}
       </GenericBodyPage>
       <DialogueModel
         isOpen={dialogState}
