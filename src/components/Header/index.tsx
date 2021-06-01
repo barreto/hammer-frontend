@@ -1,16 +1,16 @@
-import { AppBar, Grid, IconButton, Toolbar } from '@material-ui/core';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
-import clsx from 'clsx';
-import React, { ReactElement, ReactNode, useContext, useRef } from 'react';
+import { AppBar, Grid, IconButton, Toolbar } from "@material-ui/core";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { createStyles, makeStyles, Theme, useTheme } from "@material-ui/core/styles";
+import MenuIcon from "@material-ui/icons/Menu";
+import clsx from "clsx";
+import React, { ReactElement, ReactNode, useContext, useRef } from "react";
 
-import drawerWidth from '../../constants/drawerWidth';
-import { HeaderContext } from '../../contexts/HeaderContext';
-import theme from '../../theme';
-import Logo from '../Logo';
-import SideBar from '../SideBar';
-import TogglableMenu from '../TogglableMenu';
+import drawerWidth from "../../constants/drawerWidth";
+import { HeaderContext } from "../../contexts/HeaderContext";
+import theme from "../../theme";
+import Logo from "../Logo";
+import SideBar from "../SideBar";
+import TogglableMenu from "../TogglableMenu";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -89,37 +89,35 @@ function Header() {
   };
 
   return (
-    headerStatus && (
-      <div className={classes.root}>
-        <CssBaseline />
-        <AppBar
-          position="fixed"
-          className={clsx(classes.appBar, {
-            [classes.appBarShift]: open,
-          })}
-        >
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
-              className={clsx(classes.menuButton, {
-                [classes.hide]: open,
-              })}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Grid container justify="center" alignItems="center">
-              <Logo />
-            </Grid>
-            <TogglableMenu />
-          </Toolbar>
-        </AppBar>
-        <SideBar isOpen={open} handleDrawerClose={handleDrawerClose} />
-        <div className={classes.toolbar} />
-      </div>
-    )
+    <div className={classes.root} style={{ display: headerStatus ? "block" : "none" }}>
+      <CssBaseline />
+      <AppBar
+        position="fixed"
+        className={clsx(classes.appBar, {
+          [classes.appBarShift]: open,
+        })}
+      >
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            className={clsx(classes.menuButton, {
+              [classes.hide]: open,
+            })}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Grid container justify="center" alignItems="center">
+            <Logo />
+          </Grid>
+          <TogglableMenu />
+        </Toolbar>
+      </AppBar>
+      <SideBar isOpen={open} handleDrawerClose={handleDrawerClose} />
+      <div className={classes.toolbar} />
+    </div>
   );
 }
 export default Header;
