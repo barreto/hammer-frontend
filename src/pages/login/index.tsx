@@ -67,7 +67,7 @@ export default function Login() {
     setTimeout(() => {
       if (username == "admin" && possiblePasswords.includes(password)) {
         console.log(">>> login: ", { username, password });
-        Router.push("/home");
+        Router.push("/dashboard");
       } else {
         setLoadingStatus(false);
         console.log(">>> loading status: ", false);

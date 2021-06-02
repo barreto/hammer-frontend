@@ -115,7 +115,7 @@ export default function SideBar({ isOpen, handleDrawerClose }: SideBarProps) {
 
   const handleRedirectionClick = (path: string) => {
     setLoadingStatus(true);
-    Router.push(path);
+    Router.push(`/${path}`);
   };
 
   return (
@@ -143,10 +143,12 @@ export default function SideBar({ isOpen, handleDrawerClose }: SideBarProps) {
       <Divider />
       <List>
         {sideBarItems.map((item, key) => (
-          <ListItem button key={`${key}-${item.text}`}>
-            <ListItemIcon onClick={() => handleRedirectionClick(item.pagePath)}>
-              {item.icon}
-            </ListItemIcon>
+          <ListItem
+            button
+            key={`${key}-${item.text}`}
+            onClick={() => handleRedirectionClick(item.pagePath)}
+          >
+            <ListItemIcon>{item.icon}</ListItemIcon>
             <ListItemText primary={item.text} />
           </ListItem>
         ))}

@@ -120,9 +120,10 @@ export default function Images({ images, hasImages }: ImagesProps) {
       const { data, status } = await hammerApi.deleteImage(imageId);
       Router.reload();
       console.log(">>> response: ", { data, status });
+      setLoadingStatus(false);
     } catch (error) {
       console.log(">>> Error: ", error);
-    } finally {
+      alert("Falha ao excluir imagem.");
       setLoadingStatus(false);
     }
 
@@ -131,7 +132,7 @@ export default function Images({ images, hasImages }: ImagesProps) {
 
   const handleImageCreate = () => {
     setLoadingStatus(true);
-    Router.push("images/pull");
+    Router.push("/images/pull");
   };
 
   const EmptyState = () => {

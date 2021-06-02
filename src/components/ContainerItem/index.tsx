@@ -100,11 +100,40 @@ export default function ContainerItem({ container, deleteContainer }: ContainerI
       const { data, status } = await hammerApi.startContainer(containerId);
       console.log(">>> Success: ", { data, status });
       Router.reload();
+      setLoadingStatus(false);
     } catch (error) {
       console.log(">>> Error: ", error);
-      alert("Falha ao rodar contêiner.");
-    } finally {
+      alert("Falha ao executar contêiner.");
+    }
+  };
+
+  const handleRestart = async (containerId: string) => {
+    console.log(">>> handleStop");
+
+    setLoadingStatus(true);
+    try {
+      const { data, status } = await hammerApi.restartContainer(containerId);
+      console.log(">>> Success: ", { data, status });
+      Router.reload();
       setLoadingStatus(false);
+    } catch (error) {
+      console.log(">>> Error: ", error);
+      alert("Falha ao reiniciar contêiner.");
+    }
+  };
+
+  const handleStop = async (containerId: string) => {
+    console.log(">>> handleStop");
+
+    setLoadingStatus(true);
+    try {
+      const { data, status } = await hammerApi.stopContainer(containerId);
+      console.log(">>> Success: ", { data, status });
+      Router.reload();
+      setLoadingStatus(false);
+    } catch (error) {
+      console.log(">>> Error: ", error);
+      alert("Falha ao parar contêiner.");
     }
   };
 
@@ -186,7 +215,7 @@ export default function ContainerItem({ container, deleteContainer }: ContainerI
                   color="inherit"
                   aria-haspopup="true"
                   aria-controls="menu-appbar"
-                  // onClick={() => handleDelete(image.id, image.name)}
+                  onClick={() => handleStop(container.id)}
                 >
                   <PanToolIcon />
                 </IconButton>
@@ -202,7 +231,7 @@ export default function ContainerItem({ container, deleteContainer }: ContainerI
                   color="inherit"
                   aria-haspopup="true"
                   aria-controls="menu-appbar"
-                  // onClick={() => handleDelete(image.id, image.name)}
+                  onClick={() => handleRestart(container.id)}
                 >
                   <ReplayIcon />
                 </IconButton>

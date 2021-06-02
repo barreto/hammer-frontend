@@ -37,7 +37,7 @@ export default function PullImage() {
     return name.length > 0 && tag.length > 0;
   };
 
-  const handleBackClick = () => {
+  const handImageBackClick = () => {
     setLoadingStatus(true);
     Router.push("/images");
   };
@@ -46,9 +46,8 @@ export default function PullImage() {
     setLoadingStatus(true);
     try {
       const { data } = await hammerApi.pullImage(name, tag);
-      handleBackClick();
       console.log(">>> Success: ", data);
-      Router.push("/images");
+      handImageBackClick();
     } catch (error) {
       console.log(">>> Error: ", error);
       alert("Falha ao baixar imagem");
@@ -92,7 +91,7 @@ export default function PullImage() {
             </Grid>
           </Grid>
           <Grid container justify="space-between" className={classes.buttonGroup}>
-            <Button variant="outlined" color="primary" onClick={handleBackClick}>
+            <Button variant="outlined" color="primary" onClick={handImageBackClick}>
               Voltar
             </Button>
             <Button

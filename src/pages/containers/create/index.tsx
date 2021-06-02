@@ -5,10 +5,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Router from 'next/router';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import GenericBodyPage from '../../../components/GenericBodyPage';
 import { LoadingContext } from '../../../contexts/LoadingContext';
@@ -41,37 +40,73 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-interface CreateContainerProps {
-  images: any;
-}
-export default function CreateContainer({ images }: CreateContainerProps) {
+export default function CreateContainer() {
   const classes = useStyles();
   const { setLoadingStatus } = useContext(LoadingContext);
+
   const [containerName, setContainerName] = useState("");
   const [isContainerNameTipOpen, setIsContainerNameTipOpen] = useState(false);
   const [imageName, setImageName] = useState("");
   const [tag, setTag] = useState("");
+  const [images, setImages] = useState([]);
+
+  const loadImages = async () => {
+    setLoadingStatus(false);
+    const { data } = await hammerApi.getImages();
+
+    const imagesNamesAndTags = data.images.map((image: any) => {
+      const [name, tag] = image.repoTags[0].split(":");
+      return { name, tag };
+    });
+
+    imagesNamesAndTags.sort(function (a: any, b: any) {
+      if (a.name < b.name) return -1;
+      if (a.name > b.name) return 1;
+      return 0;
+    });
+
+    let unicImageNames: any[] = [];
+    for (const nameTagItem of imagesNamesAndTags) {
+      const isNewImageName = !unicImageNames.includes(nameTagItem.name);
+      if (isNewImageName) unicImageNames.push(nameTagItem.name);
+    }
+
+    let images: any = {};
+
+    unicImageNames.forEach((name) => {
+      const tagsOfName = imagesNamesAndTags
+        .filter((nameTagItem: any) => nameTagItem.name == name)
+        .map((item: any) => item.tag);
+      images = { ...images, [name]: tagsOfName };
+    });
+
+    setImages(images);
+    setLoadingStatus(false);
+  };
+
+  useEffect(() => {
+    loadImages();
+  }, []);
 
   const isValidInfo = () => {
     return containerName.length > 0 && imageName.length > 0 && tag.length > 0;
   };
 
-  const handleBackClick = () => {
+  const handleContainerBackClick = () => {
     setLoadingStatus(true);
-    Router.push("/images");
+    Router.push("/containers");
   };
 
   const handleCreateClick = async () => {
     setLoadingStatus(true);
     try {
       const { data } = await hammerApi.createContainer(containerName, imageName, tag);
-      handleBackClick();
       console.log(">>> Success: ", data);
-      Router.push("/containers");
+      handleContainerBackClick();
+      setLoadingStatus(false);
     } catch (error) {
       console.log(">>> Error: ", error);
       alert("Falha ao baixar imagem");
-    } finally {
       setLoadingStatus(false);
     }
   };
@@ -80,7 +115,7 @@ export default function CreateContainer({ images }: CreateContainerProps) {
     const value = event.target.value as string;
 
     const blockedValues = [" ", "!", "@", "#", "$", "%", "¨", "&", "*", "(", ")", "+"];
-    const hasBlockedValues = !blockedValues.includes(value);
+    const hasBlockedValues = blockedValues.includes(value);
 
     const regexName = /^[\w\-]/;
     const regexSpecialChar = /[*|\":<>[\]{}`\\()';!@&$%]/;
@@ -91,16 +126,8 @@ export default function CreateContainer({ images }: CreateContainerProps) {
 
     const isValid =
       hasAlphanumericAndTrace && !hasBlockedValues && !hasSpecialChars && !hasWhiteSpace;
-    console.table({
-      value,
-      hasSpecialChars,
-      hasAlphanumericAndTrace,
-      hasWhiteSpace,
-      hasBlockedValues,
-      result: isValid,
-    });
 
-    if (isValid) {
+    if (true) {
       setContainerName(value);
     } else {
       setIsContainerNameTipOpen(true);
@@ -116,6 +143,16 @@ export default function CreateContainer({ images }: CreateContainerProps) {
   const handleTagChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setTag(event.target.value as string);
   };
+
+  const [allTags, setAllTags] = useState<any[]>([]);
+  useEffect(() => {
+    for (const [itemkey, itemValue] of Object.entries(images)) {
+      if (itemkey == imageName) {
+        setAllTags(itemValue);
+        return;
+      }
+    }
+  }, [imageName]);
 
   return (
     <>
@@ -183,7 +220,7 @@ export default function CreateContainer({ images }: CreateContainerProps) {
                     Selecione
                   </MenuItem>
                   {imageName &&
-                    images[imageName].map((tag: any, idx: number) => (
+                    allTags.map((tag: any, idx: number) => (
                       <MenuItem
                         key={`${tag}-${idx}`}
                         value={tag}
@@ -210,7 +247,7 @@ export default function CreateContainer({ images }: CreateContainerProps) {
             >
               Criar
             </Button>
-            <Button variant="outlined" color="primary" onClick={handleBackClick}>
+            <Button variant="outlined" color="primary" onClick={handleContainerBackClick}>
               Voltar
             </Button>
           </Grid>
@@ -219,38 +256,3 @@ export default function CreateContainer({ images }: CreateContainerProps) {
     </>
   );
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await hammerApi.getImages();
-
-  const imagesNamesAndTags = data.images.map((image: any) => {
-    const [name, tag] = image.repoTags[0].split(":");
-    return { name, tag };
-  });
-
-  imagesNamesAndTags.sort(function (a: any, b: any) {
-    if (a.name < b.name) return -1;
-    if (a.name > b.name) return 1;
-    return 0;
-  });
-
-  let unicImageNames: any[] = [];
-  for (const nameTagItem of imagesNamesAndTags) {
-    const isNewImageName = !unicImageNames.includes(nameTagItem.name);
-    if (isNewImageName) unicImageNames.push(nameTagItem.name);
-  }
-
-  let images: any = {};
-
-  unicImageNames.forEach((name) => {
-    const tagsOfName = imagesNamesAndTags
-      .filter((nameTagItem: any) => nameTagItem.name == name)
-      .map((item: any) => item.tag);
-    images = { ...images, [name]: tagsOfName };
-  });
-
-  return {
-    props: { images },
-    revalidate: 5,
-  };
-};

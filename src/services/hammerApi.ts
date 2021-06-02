@@ -15,7 +15,8 @@ class HammerAPI {
   }
 
   async deleteImage(id: string) {
-    return await hammerApi.delete(`images/${id}`);
+    const config: AxiosRequestConfig = { params: { force: true } };
+    return await hammerApi.delete(`images/${id}`, config);
   }
 
   async deleteAllImages() {

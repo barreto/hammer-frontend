@@ -1,7 +1,6 @@
 import { Button, Grid, IconButton, Tooltip, Typography } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { DeleteForever, Inbox, Refresh } from '@material-ui/icons';
-import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Router from 'next/router';
 import React, { SyntheticEvent, useContext, useEffect, useState } from 'react';
@@ -40,17 +39,13 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-interface ImagesProps {
-  containers: any[];
-}
-
-export default function Containers({ containers }: ImagesProps) {
+export default function Containers() {
   const classes = useStyles();
-  const hasContainers = Boolean(containers.length);
 
   const { setHeaderStatus } = useContext(HeaderContext);
   const { setLoadingStatus } = useContext(LoadingContext);
 
+  const [containers, setContainers] = React.useState([]);
   const [dialogState, setDialogState] = React.useState(false);
   const initialDialogProps: DialogueModelProps = {
     title: "Title",
@@ -60,9 +55,27 @@ export default function Containers({ containers }: ImagesProps) {
   };
   const [dialogProps, setDialogProps] = React.useState(initialDialogProps);
 
+  async function loadContainers() {
+    setLoadingStatus(true);
+    const { data } = await hammerApi.getContainers();
+
+    const containersData = data.containers.map((container: any) => {
+      const [image, tag = "unknow"] = container.image.split(":");
+      const networkMode = container?.hostConfig?.NetworkMode;
+      const { id, command, status } = container;
+
+      return { id, tag, image, networkMode, command, status };
+    });
+
+    console.log(">>> containersData: ", containersData);
+
+    setContainers(containersData);
+    setLoadingStatus(false);
+  }
+
   useEffect(() => {
     setHeaderStatus(true);
-    // setLoadingStatus(false);
+    loadContainers();
   }, []);
 
   const handleCloseDialog = () => {
@@ -94,10 +107,10 @@ export default function Containers({ containers }: ImagesProps) {
       const { data, status } = await hammerApi.deleteAllContainers();
       console.log(">>> Success: ", { data, status });
       handleUpdate();
+      setLoadingStatus(false);
     } catch (error) {
       console.log(">>> Error: ", error);
       alert("Falha ao excluir todos os contêineres.");
-    } finally {
       setLoadingStatus(false);
     }
   };
@@ -123,10 +136,10 @@ export default function Containers({ containers }: ImagesProps) {
       const { data, status } = await hammerApi.deleteContainer(containerId);
       handleUpdate();
       console.log(">>> response: ", { data, status });
+      setLoadingStatus(false);
     } catch (error) {
       console.log(">>> Error: ", error);
       alert("Falha ao excluir container.");
-    } finally {
       setLoadingStatus(false);
     }
 
@@ -160,7 +173,7 @@ export default function Containers({ containers }: ImagesProps) {
             <Grid container direction="row" alignItems="center" className={classes.headerContainer}>
               <h2>Contêineres</h2>
 
-              {hasContainers && (
+              {Boolean(containers.length) && (
                 <Tooltip
                   title="Excluir todos os contêirneres"
                   aria-label="excluir todos os contêirneres"
@@ -179,7 +192,7 @@ export default function Containers({ containers }: ImagesProps) {
             </Grid>
           </Grid>
           <Grid item>
-            {hasContainers && (
+            {Boolean(containers.length) && (
               <Tooltip title="Atualizar" aria-label="atualizar" placement="left">
                 <IconButton
                   color="inherit"
@@ -199,7 +212,7 @@ export default function Containers({ containers }: ImagesProps) {
           </Grid>
         </Grid>
 
-        {hasContainers ? (
+        {Boolean(containers.length) ? (
           <ContainersList containers={containers} deleteContainer={handleOnDeleteSingleClick} />
         ) : (
           <EmptyState />
@@ -218,41 +231,3 @@ export default function Containers({ containers }: ImagesProps) {
     </>
   );
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-  async function createImages() {
-    const { data } = await hammerApi.getImages();
-
-    const images = data.images.map((image: any) => {
-      const [name, tag] = image.repoTags[0].split(":");
-
-      return { name, tag };
-    });
-
-    images.sort(function (a: any, b: any) {
-      if (a.name < b.name) return -1;
-      if (a.name > b.name) return 1;
-      return 0;
-    });
-
-    return images;
-  }
-
-  async function createContainers() {
-    const { data } = await hammerApi.getContainers();
-
-    const containers = data.containers.map((container: any) => {
-      const [image, tag = "unknow"] = container.image.split(":");
-      const networkMode = container?.hostConfig?.NetworkMode;
-      const { id, command, status } = container;
-
-      return { id, tag, image, networkMode, command, status };
-    });
-
-    return containers;
-  }
-
-  const props = { containers: await createContainers() };
-
-  return { props, revalidate: 5 };
-};
