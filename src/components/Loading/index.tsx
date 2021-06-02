@@ -8,7 +8,7 @@ export default function Loading() {
   const { loadingStatus } = useContext(LoadingContext);
 
   return (
-    <Fade in={loadingStatus} style={{ width: "100%" }}>
+    <Fade in={loadingStatus} style={{ width: "100%", zIndex: 10000 }}>
       <div className={style.landingContainer}>
         <h1>Loading</h1>
         <img src="/hammer.svg" alt="Loading logo" />

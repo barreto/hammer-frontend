@@ -24,12 +24,10 @@ export default function ImagesList({ images, deleteImage }: ImageItemsProps) {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <Grid container>
-        {images.map((image) => (
-          <ImageItem key={image.id} image={image} deleteImage={deleteImage} />
-        ))}
-      </Grid>
-    </div>
+    <Grid container spacing={2}>
+      {images.map((image) => (
+        <ImageItem key={image.id} image={image} deleteImage={deleteImage} />
+      ))}
+    </Grid>
   );
 }

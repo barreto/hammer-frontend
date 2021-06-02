@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import GenericBodyPage from "../../../components/GenericBodyPage";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -54,6 +54,10 @@ export default function PullImage() {
       setLoadingStatus(false);
     }
   };
+
+  useEffect(() => {
+    setLoadingStatus(false);
+  }, []);
 
   return (
     <>

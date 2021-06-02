@@ -1,18 +1,18 @@
-import { Button, Grid, IconButton, Tooltip, Typography } from "@material-ui/core";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import { DeleteForever, NoteAdd } from "@material-ui/icons";
-import { GetStaticProps } from "next";
-import Head from "next/head";
-import Router from "next/router";
-import React, { SyntheticEvent, useContext, useEffect, useState } from "react";
+import { Button, Grid, IconButton, Tooltip, Typography } from '@material-ui/core';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { DeleteForever, NoteAdd } from '@material-ui/icons';
+import { GetStaticProps } from 'next';
+import Head from 'next/head';
+import Router from 'next/router';
+import React, { SyntheticEvent, useContext, useEffect, useState } from 'react';
 
-import DialogueModel, { DialogueModelProps } from "../../components/DialogueModel";
-import GenericBodyPage from "../../components/GenericBodyPage";
-import ImagesList from "../../components/ImagesList";
-import { HeaderContext } from "../../contexts/HeaderContext";
-import { LoadingContext } from "../../contexts/LoadingContext";
-import Image from "../../models/Image";
-import hammerApi from "../../services/hammerApi";
+import DialogueModel, { DialogueModelProps } from '../../components/DialogueModel';
+import GenericBodyPage from '../../components/GenericBodyPage';
+import ImagesList from '../../components/ImagesList';
+import { HeaderContext } from '../../contexts/HeaderContext';
+import { LoadingContext } from '../../contexts/LoadingContext';
+import Image from '../../models/Image';
+import hammerApi from '../../services/hammerApi';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -43,9 +43,10 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface ImagesProps {
   images: Image[];
+  hasImages: boolean;
 }
 
-export default function Images({ images }: ImagesProps) {
+export default function Images({ images, hasImages }: ImagesProps) {
   const classes = useStyles();
 
   const { setHeaderStatus } = useContext(HeaderContext);
@@ -129,6 +130,7 @@ export default function Images({ images }: ImagesProps) {
   };
 
   const handleImageCreate = () => {
+    setLoadingStatus(true);
     Router.push("images/pull");
   };
 
@@ -154,20 +156,22 @@ export default function Images({ images }: ImagesProps) {
             <Grid container direction="row" alignItems="center" className={classes.headerContainer}>
               <h2>Imagens</h2>
 
-              <Tooltip
-                title="Excluir todas as imagens"
-                aria-label="excluir todas as imagens"
-                placement="right"
-              >
-                <IconButton
-                  color="inherit"
-                  aria-haspopup="true"
-                  aria-controls="menu-appbar"
-                  onClick={() => handleOnDeleteAllClick()}
+              {hasImages && (
+                <Tooltip
+                  title="Excluir todas as imagens"
+                  aria-label="excluir todas as imagens"
+                  placement="right"
                 >
-                  <DeleteForever />
-                </IconButton>
-              </Tooltip>
+                  <IconButton
+                    color="inherit"
+                    aria-haspopup="true"
+                    aria-controls="menu-appbar"
+                    onClick={() => handleOnDeleteAllClick()}
+                  >
+                    <DeleteForever />
+                  </IconButton>
+                </Tooltip>
+              )}
             </Grid>
           </Grid>
           <Grid item>
@@ -179,7 +183,7 @@ export default function Images({ images }: ImagesProps) {
           </Grid>
         </Grid>
 
-        {images.length ? (
+        {hasImages ? (
           <ImagesList images={images} deleteImage={handleOnDeleteSingleClick} />
         ) : (
           <EmptyState />
@@ -222,7 +226,7 @@ export const getStaticProps: GetStaticProps = async () => {
   });
 
   return {
-    props: { images },
+    props: { images, hasImages: Boolean(images?.length) },
     revalidate: 5,
   };
 };

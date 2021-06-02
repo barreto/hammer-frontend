@@ -9,11 +9,11 @@ import {
   Theme,
   Tooltip,
   Typography,
-} from "@material-ui/core";
-import { Delete, ImageSearch } from "@material-ui/icons";
-import React, { ReactNode, SyntheticEvent, useContext, useEffect, useState } from "react";
+} from '@material-ui/core';
+import { Delete } from '@material-ui/icons';
+import React, { ReactNode, SyntheticEvent, useContext, useEffect, useState } from 'react';
 
-import Image from "../../models/Image";
+import Image from '../../models/Image';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -22,10 +22,10 @@ const useStyles = makeStyles((theme: Theme) =>
       background: "#e7e7e7",
     },
     name: {
-      color: "#333",
-      textTransform: "capitalize",
+      color: "#888",
       fontSize: "1.5rem",
       margin: "1rem 0 0",
+      textTransform: "capitalize",
     },
     nameComplement: {
       color: "#777",
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingLeft: ".5rem",
     },
     label: {
-      color: "#888",
+      color: "#333",
       fontSize: ".8rem",
     },
     paper: {
@@ -60,7 +60,7 @@ interface ImageItemsProps {
 }
 
 export default function ImageItem({ image, deleteImage }: ImageItemsProps) {
-  const delay = 1 * 1000; // sec * milisseconds
+  const delay = 200; // sec * milisseconds
   const classes = useStyles();
   const [hasWaitedDeplay, sethasWaitedDeplay] = useState(false);
 
@@ -79,7 +79,7 @@ export default function ImageItem({ image, deleteImage }: ImageItemsProps) {
   };
 
   return (
-    <Grid item xs={12}>
+    <Grid item xs={12} md={6} lg={4}>
       <Fade in={hasWaitedDeplay}>
         <Paper className={classes.paper}>
           <Grid container direction="row" alignItems="center" justify="space-between">
