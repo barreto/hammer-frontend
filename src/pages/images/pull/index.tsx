@@ -1,12 +1,13 @@
-import Head from "next/head";
-import React, { useContext, useEffect, useState } from "react";
-import GenericBodyPage from "../../../components/GenericBodyPage";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import { Button, Grid, Paper } from "@material-ui/core";
-import Router from "next/router";
-import { LoadingContext } from "../../../contexts/LoadingContext";
-import hammerApi from "../../../services/hammerApi";
+import { Button, Grid } from '@material-ui/core';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Head from 'next/head';
+import Router from 'next/router';
+import React, { useContext, useEffect, useState } from 'react';
+
+import GenericBodyPage from '../../../components/GenericBodyPage';
+import { LoadingContext } from '../../../contexts/LoadingContext';
+import hammerApi from '../../../services/hammerApi';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

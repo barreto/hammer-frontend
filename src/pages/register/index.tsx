@@ -33,7 +33,9 @@ export default function Login() {
   const { setHeaderStatus } = useContext(HeaderContext);
 
   const [hasValidFields, setHasValidFields] = useState(false);
+  const [nickname, setNickname] = useState("");
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   useEffect(() => {
@@ -45,6 +47,10 @@ export default function Login() {
     const isValid = Boolean(
       Boolean(username) &&
         Boolean(username.trim()) &&
+        Boolean(nickname) &&
+        Boolean(nickname.trim()) &&
+        Boolean(email) &&
+        Boolean(email.trim()) &&
         Boolean(password) &&
         Boolean(password.trim()) &&
         Boolean(password.length >= 8)
@@ -53,9 +59,9 @@ export default function Login() {
     setHasValidFields(isValid);
   }, [username, password]);
 
-  const handleRegisternavigation = () => {
+  const handleLoginNavigation = () => {
     setLoadingStatus(true);
-    Router.push("/register");
+    Router.push("/login");
   };
 
   const handleLoginSubmit = () => {
@@ -88,7 +94,7 @@ export default function Login() {
                 <Logo />
               </Grid>
               <Grid item>
-                <p>| Login</p>
+                <p>| Sign In</p>
               </Grid>
             </Grid>
           </header>
@@ -98,11 +104,34 @@ export default function Login() {
                 <Grid item xs={12}>
                   <TextField
                     fullWidth
+                    id="nickname-input"
+                    label="apelido"
+                    variant="outlined"
+                    value={nickname}
+                    onChange={(event) => setNickname(event.target.value)}
+                  />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
                     id="username-input"
                     label="usuário"
                     variant="outlined"
                     value={username}
                     onChange={(event) => setUsername(event.target.value)}
+                  />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    id="username-input"
+                    type="email"
+                    label="email"
+                    variant="outlined"
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
                   />
                 </Grid>
 
@@ -119,7 +148,7 @@ export default function Login() {
                 </Grid>
 
                 <Grid item xs={12} className={classes.linkContainer}>
-                  <Link onClick={handleRegisternavigation}>ainda não tenho conta</Link>
+                  <Link onClick={handleLoginNavigation}>já tenho conta</Link>
                 </Grid>
                 <Grid item xs={12}>
                   <Button
@@ -129,7 +158,7 @@ export default function Login() {
                     onClick={handleLoginSubmit}
                     disabled={!hasValidFields}
                   >
-                    Entrar
+                    Criar conta
                   </Button>
                 </Grid>
               </Grid>
