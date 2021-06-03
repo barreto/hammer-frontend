@@ -1,34 +1,72 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+<h1 align="center" title="hammer" style="background-color: #212121">
 
-First, run the development server:
+<img src="public\hammer-frontend.png" width="400"/>
 
-```bash
-npm run dev
+</h1>
+
+___
+
+<h4 align="center">
+    <a href="#:hammer_and_pick:-techs">Techs</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#prerequisites">Prerequisites</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#how-to-run">How to run</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#owners">Owners</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#how-to-run">Back-end</a>
+</h4>
+
+___
+
+
+## :hammer_and_pick: Techs
+
+- [Axios](https://www.npmjs.com/package/axios)
+- [Next](https://nextjs.org/)
+- [Material UI](https://material-ui.com/)
+- [React](https://reactjs.org/)
+- [Sass](https://sass-lang.com/)
+- [Typescript](https://www.typescriptlang.org/)
+
+## :hammer_and_pick: Prerequisites
+
+### :hammer: Dependencies
+
+To install the dependencies your should user the comand. an:
+```sh
+npm install
 # or
-yarn dev
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## :hammer_and_pick: How to run
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### :hammer: Development 
+Start development server with the following command:
+```sh
+npm run dev
+```
 
-## Learn More
+### :hammer: Production 
 
-To learn more about Next.js, take a look at the following resources:
+Build project at first:
+```sh
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Start server after build in production mode:
+```sh
+npm run start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+##:hammer_and_pick: Owners 
 
-## Deploy on Vercel
+<h4 align="center">
+  <a href="https://github.com/">Leonardo Morais</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="https://github.com/lucaspolizeli">Lucas Polizeli</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="https://github.com/thalees">Thales Pereira</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="https://github.com/barreto">Victor Barreto</a>
+</h4>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
