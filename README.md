@@ -60,7 +60,7 @@ Start server after build in production mode:
 npm run start
 ```
 
-##:hammer_and_pick: Owners 
+## :hammer_and_pick: Owners 
 
 <h4 align="center">
   <a href="https://github.com/">Leonardo Morais</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
