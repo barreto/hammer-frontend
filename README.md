@@ -7,8 +7,8 @@ ___
     <a href="#hammer_and_pick-techs">Techs</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
     <a href="#hammer_and_pick-prerequisites">Prerequisites</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
     <a href="#hammer_and_pick-how-to-run">How to run</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-    <a href="#hammer_and_pick-builders">Builders</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-    <a href="#hammer_and_pick-how-to-run">Back-end</a>
+    <a href="https://github.com/barreto/hammer-backend">Back-end</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#hammer_and_pick-builders">Builders</a>
 </h4>
 
 ___
