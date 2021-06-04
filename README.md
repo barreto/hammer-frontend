@@ -4,6 +4,7 @@
 ___
 
 <h4 align="center">
+    <a href="#hammer_and_pick-about">About</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
     <a href="#hammer_and_pick-techs">Techs</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
     <a href="#hammer_and_pick-prerequisites">Prerequisites</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
     <a href="#hammer_and_pick-how-to-run">How to run</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -12,6 +13,16 @@ ___
 </h4>
 
 ___
+
+## :hammer_and_pick: About
+
+Hammer is a consistent app aimed at whoever
+want to manage your infrastructure optimally, flexibly,
+agile and above all simple.
+
+In this way, registered customers can create images,
+delete them individually and in their entirety, create containers
+based on the images you can download them, run, pause, restart and much more.
 
 
 ## :hammer_and_pick: Techs
