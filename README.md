@@ -1,18 +1,18 @@
 
 <h1 align="center" title="hammer" style="background-color: #212121">
 
-<img src="public\hammer-frontend.png" width="400"/>
+<img src="https://github.com/barreto/hammer-frontend/blob/main/public/hammer-backend.png?raw=true" width="400"/>
 
 </h1>
 
 ___
 
 <h4 align="center">
-    <a href="#:hammer_and_pick:-techs">Techs</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-    <a href="#prerequisites">Prerequisites</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-    <a href="#how-to-run">How to run</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-    <a href="#owners">Owners</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-    <a href="#how-to-run">Back-end</a>
+    <a href="#hammer_and_pick-techs">Techs</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#hammer_and_pick-prerequisites">Prerequisites</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#hammer_and_pick-how-to-run">How to run</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#hammer_and_pick-builders">Builders</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#hammer_and_pick-how-to-run">Back-end</a>
 </h4>
 
 ___
@@ -28,6 +28,13 @@ ___
 - [Typescript](https://www.typescriptlang.org/)
 
 ## :hammer_and_pick: Prerequisites
+
+### :hammer: Backend
+
+Hammer application works with a custom backend that communicates with a MongoDB cluster, so it may be running before start this application.
+
+You can download and undestand more about Hammer API at the following repository: **[Hammer API](https://github.com/barreto/hammer-backend)**
+
 
 ### :hammer: Dependencies
 
@@ -46,6 +53,8 @@ yarn install
 Start development server with the following command:
 ```sh
 npm run dev
+# or
+yarn run dev
 ```
 
 ### :hammer: Production 
@@ -53,14 +62,18 @@ npm run dev
 Build project at first:
 ```sh
 npm run build
+# or
+yarn run build
 ```
 
 Start server after build in production mode:
 ```sh
 npm run start
+# or
+yarn run start
 ```
 
-## :hammer_and_pick: Owners 
+## :hammer_and_pick: Builders 
 
 <h4 align="center">
   <a href="https://github.com/">Leonardo Morais</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -70,3 +83,10 @@ npm run start
 </h4>
 
 
+<img src="https://github.com/barreto/hammer-frontend/blob/main/public/hammer.svg?raw=true" align="center" width="300"/>
+
+___
+
+<h6 align="center"><i>Have a Hammer experience.</i></h6>
+
+___
