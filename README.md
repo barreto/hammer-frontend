@@ -78,8 +78,11 @@ yarn run start
   <a href="https://github.com/barreto">Victor Barreto</a>
 </h4>
 
+<p align="center">
+    
+<img src="https://github.com/barreto/hammer-frontend/blob/main/public/hammer.svg?raw=true"  width="300"/>
 
-<img src="https://github.com/barreto/hammer-frontend/blob/main/public/hammer.svg?raw=true" align="center" width="300"/>
+</p>
 
 ___
 
