@@ -14,6 +14,8 @@ ___
 
 ___
 
+![Hammer preview](https://github.com/barreto/hammer-frontend/blob/main/public/hammer-preview.gif?raw=true)
+
 ## :hammer_and_pick: About
 
 Hammer is a consistent app aimed at whoever
