@@ -1,14 +1,6 @@
 
 <img src="https://github.com/barreto/hammer-frontend/blob/main/public/hammer-frontend.png?raw=true" width="1200"/>
 
-<h4 align="center">
-
-  <img src="https://badges.pufler.dev/visits/barreto/hammer-frontend" alt="Visits Badge" width="auto"/>
-  <img src="https://img.shields.io/github/last-commit/barreto/hammer-frontend" alt="Last update" width="auto"/>
-  <img src="https://img.shields.io/github/repo-size/barreto/hammer-frontend" alt="Repo size" width="auto"/>
-
-</h4>
-
 ___
 
 <h4 align="center">
@@ -99,14 +91,24 @@ yarn run start
   <a href="https://github.com/barreto">Victor Barreto</a>
 </h4>
 
+
 <p align="center">
     
 <img src="https://github.com/barreto/hammer-frontend/blob/main/public/hammer.svg?raw=true"  width="300"/>
 
 </p>
 
+
 ___
 
 <h6 align="center"><i>Have a Hammer experience.</i></h6>
 
 ___
+
+<h5 align="center">
+
+  <img src="https://badges.pufler.dev/visits/barreto/hammer-frontend" alt="Visits Badge" width="auto"/>
+  <img src="https://img.shields.io/github/last-commit/barreto/hammer-frontend" alt="Last update" width="auto"/>
+  <img src="https://img.shields.io/github/repo-size/barreto/hammer-frontend" alt="Repo size" width="auto"/>
+
+</h5>
