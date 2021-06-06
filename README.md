@@ -1,6 +1,14 @@
 
 <img src="https://github.com/barreto/hammer-frontend/blob/main/public/hammer-frontend.png?raw=true" width="1200"/>
 
+<h4 align="center">
+
+  <img src="https://badges.pufler.dev/visits/barreto/hammer-frontend" alt="Visits Badge" width="auto"/>
+  <img src="https://img.shields.io/github/last-commit/barreto/hammer-frontend" alt="Last update" width="auto"/>
+  <img src="https://img.shields.io/github/repo-size/barreto/hammer-frontend" alt="Repo size" width="auto"/>
+
+</h4>
+
 ___
 
 <h4 align="center">
